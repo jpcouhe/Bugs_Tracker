@@ -1,0 +1,17 @@
+<div class="container d-flex flex-column h-100">
+  <div class="top">
+    <h2>DASHBOARD</h2>
+  </div>
+  <div class="bottom">
+    <app-project-list
+      [projects]="projects | async"
+      [users]="users | async"
+      (deleteProject)="deleteProject($event)"
+      (updateProject)="updateProject($event)"
+      fxFill
+    ></app-project-list>
+    <div class="charts">
+      <app-charts></app-charts>
+    </div>
+  </div>
+</div>

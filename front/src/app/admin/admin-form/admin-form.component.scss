@@ -1,0 +1,20 @@
+.form-group {
+  gap: 20px;
+}
+
+select {
+  padding: 7px;
+}
+
+label {
+  position: relative;
+}
+
+label::after {
+  content: "";
+  position: absolute;
+  border: 1px solid var(--primary);
+  width: 20px;
+  bottom: 0;
+  left: 0;
+}

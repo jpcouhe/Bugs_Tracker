@@ -1,0 +1,38 @@
+<div class="container" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h2 class="title">Ajouter un nouveau projet</h2>
+    <span (click)="closeDialog()"><mat-icon>close</mat-icon></span>
+  </div>
+  <hr />
+  <form (submit)="submit()" [formGroup]="projectForm" fxLayout="column">
+    <mat-form-field>
+      <label>Nom du Projet</label>
+      <input type="text" matInput formControlName="name" />
+      <mat-error *ngIf="projectForm.get('name')?.errors?.['required']"
+        >Veuillez renseigner un Nom</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never">
+      <label>Description du projet</label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="projectForm.get('description')?.errors?.['required']"
+        >Veuillez renseigner un Prénom</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select
+        placeholder="Contributeurs"
+        formControlName="contribution"
+        multiple
+      >
+        <mat-option *ngFor="let user of user$ | async" [value]="user.id">
+          {{ user.lastname }} {{ user.firstname | lowercase }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-error *ngIf="error"> {{ error }}</mat-error>
+    <button class="btn btn-primary">Créer</button>
+  </form>
+</div>

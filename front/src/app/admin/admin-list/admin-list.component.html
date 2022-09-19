@@ -1,0 +1,19 @@
+<mat-card >
+  <mat-card-header class="mb-20">
+    <mat-card-title> Organisation </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul *ngIf="users" class="mb-20 list-primary">
+      <li
+        [routerLink]="[{ outlets: { sub: ['edit', index] } }]"
+        routerLinkActive="active"
+        *ngFor="let user of users!; let index = index"
+      >
+        <span class="flex-50"> {{ user.firstname }} {{ user.lastname }} </span>
+        <div class="flex-50">
+          <span>{{ user.email }}</span>
+        </div>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

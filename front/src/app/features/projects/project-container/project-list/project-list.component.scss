@@ -1,0 +1,20 @@
+.mat-column-description {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 8% !important;
+  width: 60% !important;
+}
+
+mat-card-header {
+  justify-content: space-between;
+}
+
+mat-card {
+  margin: -100px 40px;
+}
+
+.action{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}

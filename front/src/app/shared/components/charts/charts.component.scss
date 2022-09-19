@@ -1,0 +1,13 @@
+.container {
+  justify-content: center;
+  gap: 10px;
+}
+
+mat-card {
+  max-width: 300px;
+}
+
+mat-card-content {
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,61 @@
+<div class="container" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h2 class="title">Ajouter un nouveau Ticket</h2>
+    <span (click)="closeDialog()"><mat-icon>close</mat-icon></span>
+  </div>
+  <hr />
+  <form (submit)="submit()" [formGroup]="ticketForm" fxLayout="column">
+    <mat-form-field>
+      <label>Nom du Ticket</label>
+      <input type="text" matInput formControlName="title" />
+      <mat-error *ngIf="ticketForm.get('title')?.errors?.['required']"
+        >Veuillez renseigner un Nom</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never">
+      <label>Description du ticket</label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="ticketForm.get('description')?.errors?.['required']"
+        >Veuillez renseigner un Prénom</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <label>Temps estimé</label>
+      <input type="number" matInput formControlName="estimateTime" />
+      <mat-error *ngIf="ticketForm.get('name')?.errors?.['required']"
+        >Veuillez renseigner un Nom</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+        placeholder="Priorité"
+        formControlName="priorityId"
+      >
+        <mat-option value="1">Low </mat-option>
+        <mat-option value="2">Medium </mat-option>
+        <mat-option value="4">Intermediate</mat-option>
+        <mat-option value="3">Hight</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Type" formControlName="typeId">
+        <mat-option value="1">Issus </mat-option>
+        <mat-option value="2">Bug </mat-option>
+        <mat-option value="3">Feature Request</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="modifyForm">
+      <mat-select placeholder="Status" formControlName="statusId">
+        <mat-option value="1">New </mat-option>
+        <mat-option value="2">In Progress </mat-option>
+        <mat-option value="3">Resolve</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error *ngIf="error"> {{ error }}</mat-error>
+    <button class="btn btn-primary">Créer</button>
+  </form>
+</div>

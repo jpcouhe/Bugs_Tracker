@@ -1,1 +1,42 @@
-<p>login works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <form (submit)="submit()" [formGroup]="form" fxLayout="column">
+        <mat-form-field floatLabel="never" appearance="fill">
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            placeholder="Email"
+          />
+          <mat-error *ngIf="form.get('email')?.errors?.['required']"
+            >Veuillez renseigner un email</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field floatLabel="never" appearance="fill">
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="Password"
+          />
+          <mat-error *ngIf="form.get('password')?.errors?.['required']"
+            >Veuillez renseigner un mot de passe</mat-error
+          >
+        </mat-form-field>
+
+        <mat-checkbox formControlName="remember"
+          >Se souvenir de moi</mat-checkbox
+        >
+        <mat-error *ngIf="error" class="mb-10">{{ error }}</mat-error>
+        <button class="btn btn-primary">Se Connecter</button>
+      </form></mat-card-content
+    >
+  </mat-card>
+</div>
+<div fxLayout="row" fxLayoutAlign="space-between" class="p-10">
+  <a (click)="requestNewPassword()"> Mot de passe oublie </a>
+  <a [routerLink]="['../register']" routerLinkActive="router-link-active">
+    Créer un nouveau compte
+  </a>
+</div>

@@ -1,0 +1,39 @@
+input {
+    border: 1px solid #eee;
+    height: 60px;
+    margin-top: 20px;
+  }
+  
+  textarea {
+    resize: none;
+    border: 1px solid #eee;
+    height: 150px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  
+  form input[type="text"] {
+    box-sizing: border-box;
+    padding-left: 10px;
+  }
+  
+  .title {
+    margin: 0;
+  }
+  
+  mat-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 35px;
+  }
+  
+  
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+  
+  
+  button {
+      margin-top: 20px;
+  }

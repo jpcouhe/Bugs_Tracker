@@ -1,0 +1,32 @@
+<div class="comments-row">
+  <mat-form-field>
+    <input
+      type="text"
+      matInput
+      placeholder="Laissez un commentaire…"
+      [formControl]="commentCtrl"
+    />
+  </mat-form-field>
+  <button mat-icon-button color="primary" (click)="onLeaveComment()">
+    <mat-icon>send</mat-icon>
+  </button>
+</div>
+<mat-list>
+  <h2 matSubheader>Commentaires</h2>
+  <mat-list-item
+    *ngFor="let comment of comments!; let i = index"
+    class="d-flex"
+  >
+    <div>
+      <span mat-line> {{ comment.content }} </span>
+      <span mat-line>{{ comment.createdAt }}</span>
+    </div>
+    <div class="auto">
+      <mat-icon
+        *ngIf="this.userId === comment.userId"
+        (click)="removeComment(comment.id, i)"
+        >clear</mat-icon
+      >
+    </div>
+  </mat-list-item>
+</mat-list>

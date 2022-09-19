@@ -1,0 +1,26 @@
+<div class="container d-flex">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Tickets par Priorité </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-pie-chart [results]="priority">></ngx-charts-pie-chart>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Tickets par Status </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-pie-chart [results]="status"></ngx-charts-pie-chart>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Tickets par Type </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-pie-chart [results]="type"></ngx-charts-pie-chart>
+    </mat-card-content>
+  </mat-card>
+</div>

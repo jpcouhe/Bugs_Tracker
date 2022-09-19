@@ -1,0 +1,73 @@
+mat-card {
+  margin: 20px;
+}
+
+h3::after {
+  content: "";
+  position: absolute;
+  border: 1px solid var(--primary);
+  width: 20px;
+  bottom: 0;
+  left: 0;
+}
+
+h3 {
+  position: relative;
+}
+
+h3 ~ span {
+  word-break: break-all;
+}
+
+mat-card-content {
+  gap: 20px;
+  display: flex;
+}
+
+.content-info {
+  gap: 20px;
+}
+
+.simple {
+  flex-grow: 1;
+}
+.double {
+  flex-grow: 2;
+}
+
+.mat-chip.red {
+  background-color: rgb(238, 137, 137);
+}
+
+.mat-chip.blue {
+  background-color: rgb(153, 210, 233);
+}
+
+.mat-chip.green {
+  background-color: rgb(174, 247, 156);
+}
+
+.mat-chip.brown {
+  background-color: rgb(238, 184, 141);
+}
+
+.mat-chip.grey {
+  background-color: rgb(177, 121, 39);
+}
+
+.mat-chip.yellow {
+  background-color: rgb(255, 174, 0);
+}
+
+.mat-chip.deep-purple {
+  background-color: rgb(252, 255, 51);
+}
+.mat-chip.pink {
+  background-color: rgb(130, 197, 67);
+}
+.mat-chip.dark {
+  background-color: rgb(218, 123, 47);
+}
+.mat-chip.Intermediate {
+  background-color: rgb(255, 0, 0);
+}

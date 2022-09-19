@@ -1,0 +1,16 @@
+<div class="container d-flex flex-column h-100">
+  <div class="top">
+    <h2>ADMINISTRATION</h2>
+  </div>
+  <div class="bottom d-flex">
+    <div class="bottom-display d-flex">
+      <app-admin-list
+        [users]="user$ | async"
+        class="flex-50 pr-10"
+      ></app-admin-list>
+      <div class="flex-50 pl-10">
+        <router-outlet name="sub"></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
