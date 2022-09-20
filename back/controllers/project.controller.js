@@ -37,12 +37,9 @@ exports.createProject = (req, res) => {
       },
     })
     .then((data) => {
-      console.log(data);
       res.status(200).json(data);
     })
-    .catch((e) => {
-      console.log(e);
-    });
+    .catch((e) => {});
 };
 
 exports.getAllProjects = (req, res) => {
@@ -149,15 +146,11 @@ exports.updateProject = (req, res) => {
     .then((data) => {
       res.status(200).send(data);
     })
-    .catch((e) => {
-      console.log(e);
-    });
+    .catch((e) => {});
 };
 
 exports.deleteProject = (req, res) => {
   const { i } = req.params;
-  console.log(i);
-
   prisma.projects
     .delete({
       where: {
@@ -165,18 +158,9 @@ exports.deleteProject = (req, res) => {
       },
     })
     .then((data) => {
-      console.log(data);
       return res.status(200).json(data);
     })
     .catch((e) => {
-      console.log(e);
       return res.status(500);
     });
-  // const tickets = prisma.ticket.deleteMany({
-  //   where: {
-  //     projectId: parseInt(i),
-  //   },
-  // });
-
-  // const transaction = await prisma.$transaction([deleteProject, tickets]);
 };

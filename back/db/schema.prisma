@@ -18,7 +18,8 @@ model User {
   contribution Contribution[]
   role Role @relation(fields: [roleId], references:[id])
   roleId Int 
-  tickets Ticket[]
+  ticketsContribution TicketContribution[]
+  ticket Ticket[]
   comments Comment[]
 }
 
@@ -49,7 +50,14 @@ model Contribution {
   @@id([userId, projectId])
 }
 
+model TicketContribution {
+  user User @relation(fields: [userId], references:[id], onUpdate: Cascade, onDelete: Restrict)
+  userId Int
+  ticket Ticket @relation(fields: [ticketId], references:[id], onDelete: Cascade)
+  ticketId Int
 
+  @@id([userId, ticketId])
+}
 
 model Ticket {
   id Int @id @default(autoincrement()) 
@@ -68,7 +76,7 @@ model Ticket {
   type Type @relation(fields: [typeId], references:[id])
   typeId Int
   comments Comment[]
-
+  ticketsContribution TicketContribution[]
 
 }
 

@@ -40,7 +40,6 @@ exports.getOneUser = (req, res) => {
 
 exports.updateUser = (req, res) => {
   const { id } = req.params;
-  console.log(req.body);
   const { firstname, lastname, email, phone, roleId } = req.body;
 
   User.update({

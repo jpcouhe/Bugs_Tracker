@@ -15,6 +15,11 @@ exports.getAllTickets = (req, res) => {
         priority: true,
         project: true,
         title: true,
+        ticketsContribution: {
+          select: {
+            user: true,
+          },
+        },
       },
     })
     .then((data) => {
@@ -32,18 +37,38 @@ exports.getAllTicketsById = (req, res) => {
       where: {
         projectId: projectId,
       },
-      select: {
-        createdAt: true,
-        description: true,
-        estimateTime: true,
-        id: true,
+      include: {
+        ticketsContribution: {
+          select: {
+            user: true,
+          },
+        },
+        priority: true,
         status: true,
         type: true,
         user: true,
-        priority: true,
-        project: true,
-        title: true,
       },
+      // select: {
+      //   createdAt: true,
+      //   description: true,
+      //   estimateTime: true,
+      //   id: true,
+      //   status: true,
+      //   type: true,
+      //   user: true,
+      //   priority: true,
+      //   project: true,
+      //   title: true,
+      //   ticketsContribution: {
+      //     select: {
+      //       user: {
+      //         select: {
+      //           id: true,
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
     })
     .then((data) => {
       return res.status(200).json(data);
@@ -63,6 +88,7 @@ exports.updateTicket = (req, res) => {
     priorityId,
     typeId,
     ticketId,
+    contributor,
   } = req.body;
   prisma.ticket
     .update({
@@ -76,6 +102,17 @@ exports.updateTicket = (req, res) => {
         priorityId: +priorityId,
         typeId: +typeId,
         statusId: +statusId,
+
+        ticketsContribution: {
+          deleteMany: {},
+          create: {
+            user: {
+              connect: {
+                id: parseInt(contributor),
+              },
+            },
+          },
+        },
       },
       include: {
         user: {
@@ -109,10 +146,14 @@ exports.updateTicket = (req, res) => {
             name: true,
           },
         },
+        ticketsContribution: {
+          select: {
+            user: true,
+          },
+        },
       },
     })
     .then((data) => {
-      console.log(data);
       res.status(200).send(data);
     })
     .catch((error) => {
@@ -133,6 +174,7 @@ exports.createTicket = (req, res) => {
     statusId,
     typeId,
     priorityId,
+    contributor,
   } = req.body;
 
   prisma.ticket
@@ -146,6 +188,15 @@ exports.createTicket = (req, res) => {
         statusId: parseInt(statusId),
         typeId: parseInt(typeId),
         priorityId: parseInt(priorityId),
+        ticketsContribution: {
+          create: {
+            user: {
+              connect: {
+                id: parseInt(contributor),
+              },
+            },
+          },
+        },
       },
       include: {
         user: {
@@ -179,10 +230,14 @@ exports.createTicket = (req, res) => {
             name: true,
           },
         },
+        ticketsContribution: {
+          select: {
+            user: true,
+          },
+        },
       },
     })
     .then((data) => {
-      console.log(data);
       res.status(200).json(data);
     });
 };
@@ -197,7 +252,6 @@ exports.deleteTicket = (req, res) => {
       },
     })
     .then((data) => {
-      console.log(data);
       return res.status(200).json(data);
     })
     .catch((e) => {
@@ -218,7 +272,6 @@ exports.postComment = (req, res) => {
       },
     })
     .then((data) => {
-      console.log(data);
       return res.status(200).json(data);
     })
     .catch((e) => {
@@ -228,7 +281,6 @@ exports.postComment = (req, res) => {
 
 exports.getComment = (req, res) => {
   const { id } = req.params;
-  console.log(typeof id);
   prisma.comment
     .findMany({
       where: {
