@@ -1,8 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { XAxisComponent } from '@swimlane/ngx-charts';
-import { Observable, Subscription } from 'rxjs';
-import { Project } from '../../interfaces/project.inferface';
-import { Ticket } from '../../interfaces/ticket.inferface';
+import { Subscription } from 'rxjs';
 import { TicketService } from '../../services/ticket.service';
 
 @Component({
@@ -29,7 +26,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
     },
     {
       name: 'Intermediate',
-      value: '#E6808',
+      value: '#E68080',
     },
     {
       name: 'Hight',

@@ -4,44 +4,83 @@
     <hr />
     <mat-card-content>
       <form (submit)="submit()" [formGroup]="form" fxLayout="column">
-        <div fxLayout="row" fxLayoutAlign="space-between">
+        <div fxLayout="row" fxLayoutAlign="space-between" class="mb-10">
           <mat-form-field appearance="fill" floatLabel="never">
-
-            <input type="text" matInput formControlName="lastname" placeholder="Nom"/>
+            <input
+              type="text"
+              matInput
+              formControlName="lastname"
+              placeholder="Nom"
+            />
             <mat-error *ngIf="form.get('lastname')?.errors?.['required']"
               >Veuillez renseigner un Nom</mat-error
             >
+            <mat-error *ngIf="form.get('lastname')?.errors?.['isNumeric']"
+              >Le champs ne doit pas contenir de chiffre</mat-error
+            >
           </mat-form-field>
           <mat-form-field appearance="fill" floatLabel="never">
-   
-            <input type="text" matInput formControlName="firstname" placeholder="Prénom" />
+            <input
+              type="text"
+              matInput
+              formControlName="firstname"
+              placeholder="Prénom"
+            />
             <mat-error *ngIf="form.get('firstname')?.errors?.['required']"
               >Veuillez renseigner un Prénom</mat-error
             >
           </mat-form-field>
         </div>
-        <mat-form-field appearance="fill" floatLabel="never">
-          <input type="text" matInput formControlName="phone" placeholder="Téléphone"/>
+        <mat-form-field class="mb-10" appearance="fill" floatLabel="never">
+          <input
+            type="text"
+            matInput
+            formControlName="phone"
+            placeholder="Téléphone"
+          />
           <mat-error *ngIf="form.get('phone')?.errors?.['required']"
             >Veuillez renseigner un Téléphone</mat-error
           >
         </mat-form-field>
-        <mat-form-field appearance="fill" floatLabel="never">
-          <input type="email" matInput formControlName="email" placeholder="Email"/>
+        <mat-form-field class="mb-10" appearance="fill" floatLabel="never">
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            placeholder="Email"
+          />
           <mat-error *ngIf="form.get('email')?.errors?.['required']"
             >Veuillez renseigner un Email</mat-error
           >
         </mat-form-field>
-        <mat-form-field appearance="fill" floatLabel="never">
-          <input type="password" matInput formControlName="password" placeholder="Mot de passe" />
-          <mat-error *ngIf="form.get('email')?.errors?.['required']"
+        <mat-form-field class="mb-10" appearance="fill" floatLabel="never">
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="Mot de passe"
+          />
+          <mat-error *ngIf="form.get('password')?.errors?.['required']"
             >Veuillez renseigner un Mot de passe</mat-error
           >
+          <mat-error *ngIf="form.get('password')?.errors?.['passwordStrength']"
+            >Le mot de passe doit contenir 1 chiffre, 1 majuscule et 1 caractère
+            spécial</mat-error
+          >
         </mat-form-field>
-        <mat-form-field appearance="fill" floatLabel="never">
-          <input type="password" matInput placeholder="Confirmer le mot de passe"/>
+        <mat-form-field class="mb-10" appearance="fill" floatLabel="never">
+          <input
+            type="password"
+            matInput
+            placeholder="Confirmer le mot de passe"
+            formControlName="passwordControl"
+          />
+          <mat-error
+            *ngIf="form.get('passwordControl')?.errors?.['passwordMismatch']"
+          >
+            Le mot de passe ne correspond pas</mat-error
+          >
         </mat-form-field>
-        <mat-error *ngIf="error"> {{ error }}</mat-error>
         <button class="btn btn-primary">Se Connecter</button>
       </form></mat-card-content
     >
