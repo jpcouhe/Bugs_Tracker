@@ -19,21 +19,10 @@ h3 ~ span {
   word-break: break-all;
 }
 
-mat-card-content {
-  gap: 20px;
-  display: flex;
-}
-
 .content-info {
   gap: 20px;
 }
 
-.simple {
-  flex-grow: 1;
-}
-.double {
-  flex-grow: 2;
-}
 
 .mat-chip.red {
   background-color: rgb(238, 137, 137);

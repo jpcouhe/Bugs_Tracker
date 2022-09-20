@@ -1,9 +1,9 @@
-<div class="container d-flex flex-column h-100">
+<div class="container h-100" fxLayout="column">
   <div class="top">
     <h2>PROJET</h2>
   </div>
-  <div class="bottom d-flex flex-column">
-    <div class="d-flex flex-row display">
+  <div class="bottom" fxLayout="column">
+    <div class="display" fxLayout="row">
       <mat-card class="flex-30">
         <mat-card-header>
           <mat-card-title>Contributeurs</mat-card-title>
@@ -40,6 +40,6 @@
         [project]="project"
       ></app-tickets-list>
     </div>
-    <app-tickets-information></app-tickets-information>
+    <app-tickets-information [ticket]="ticket"></app-tickets-information>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="comments-row">
+<div class="comments-row" fxLayout="row" fxLayoutAlign="space-around center" >
   <mat-form-field>
     <input
       type="text"
@@ -12,14 +12,13 @@
   </button>
 </div>
 <mat-list>
-  <h2 matSubheader>Commentaires</h2>
+  <!-- <h2 matSubheader>Commentaires</h2> -->
   <mat-list-item
     *ngFor="let comment of comments!; let i = index"
-    class="d-flex"
   >
-    <div>
+    <div >
       <span mat-line> {{ comment.content }} </span>
-      <span mat-line>{{ comment.createdAt }}</span>
+      <span class='date'mat-line> il y a {{ comment.createdAt | calculDate }}</span>
     </div>
     <div class="auto">
       <mat-icon

@@ -1,8 +1,5 @@
 nav {
   height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 30px 50px;
   box-shadow: 6px -1px 20px -7px rgba(0, 0, 0, 0.75);
   .logo {
@@ -14,19 +11,14 @@ nav {
       margin-bottom: 20px;
     }
   }
-  .nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
 
-    li {
-      margin-right: 20px;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
+  li {
+    margin-right: 20px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
 
-      &:hover {
-        color: var(--primary);
-      }
+    &:hover {
+      color: var(--primary);
     }
   }
 }

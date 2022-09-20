@@ -1,14 +1,11 @@
 mat-list-item {
-  width: 100%;
-  border-bottom: thin solid #555;
+  margin-bottom: 10px;
+  border: 1px solid #e6e6e6;
 }
 
 .comments-row {
-  display: flex;
-  border-top: thin solid #555;
   padding-top: 10px;
-  justify-content: space-around;
-  align-items: center;
+  margin-top: -50px;
 }
 
 mat-form-field {
@@ -17,4 +14,10 @@ mat-form-field {
 
 .auto {
   margin-left: auto;
+}
+
+.date {
+  margin-top: 15px;
+  font-size: 12px;
+  font-style: italic;
 }

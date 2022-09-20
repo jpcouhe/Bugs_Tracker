@@ -1,9 +1,9 @@
-<nav>
+<nav fxLayout="row" fxLayoutAlign="space-between center">
   <div class="logo">
     <img src="../../../assets/logo.png" alt="" routerLink="resume" />
   </div>
-  <div class="nav">
-    <ul class="d-flex">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <ul fxLayout="row">
       <li routerLink="resume">Dashboard</li>
       <li routerLink="tickets">Tickets</li>
       <li routerLink="admin" *ngIf="isAdmin">Administration</li>

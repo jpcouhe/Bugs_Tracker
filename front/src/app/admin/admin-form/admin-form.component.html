@@ -2,25 +2,25 @@
   <mat-card-header></mat-card-header>
   <mat-card-content>
     <form [formGroup]="userForm" (ngSubmit)="submit()">
-      <div class="d-flex form-group">
-        <div class="d-flex flex-column mb-20 flex-50">
+      <div class="form-group" fxLayout="row">
+        <div class="mb-20 flex-50" fxLayout="column">
           <label class="mb-10">Prénom</label>
           <input type="text" formControlName="firstname" />
         </div>
-        <div class="d-flex flex-column mb-20 flex-50">
+        <div class="mb-20 flex-50" fxLayout="column">
           <label class="mb-10">Nom</label>
           <input type="text" formControlName="lastname" />
         </div>
       </div>
-      <div class="d-flex flex-column mb-20">
+      <div class="mb-20" fxLayout="column">
         <label class="mb-10">Téléphone</label>
         <input type="text" formControlName="phone" />
       </div>
-      <div class="d-flex flex-column mb-20">
+      <div class="mb-20" fxLayout="column">
         <label class="mb-10">Email</label>
         <input type="text" formControlName="email" />
       </div>
-      <div class="d-flex flex-column mb-20">
+      <div class="mb-20" fxLayout="column">
         <label class="mb-10">Role</label>
         <select formControlName="roleId">
           <option value="1">Admin</option>

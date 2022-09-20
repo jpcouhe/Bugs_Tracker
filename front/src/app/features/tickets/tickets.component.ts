@@ -27,16 +27,7 @@ export class TicketsComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.authService.getIsAdmin();
     this.userId = parseInt(this.authService.getUserId());
-    // this.subscription.add(
-    //   this.auth$.subscribe((user) => {
-    //     if (user?.roleId === 1) {
-    //       this.isAdmin = true;
-    //     } else {
-    //       this.isAdmin = false;
-    //       this.userId = user?.id!;
-    //     }
-    //   })
-    // );
+ 
     if (this.isAdmin) {
       this.ticketList$ = this.ticketService.getAllTickets();
     } else {

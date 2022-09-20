@@ -40,6 +40,7 @@ export class ProjectDetailsComponent implements OnInit {
     });
   }
   getInfo(event: any) {
+    console.log(event)
     this.ticket = event;
   }
 }
