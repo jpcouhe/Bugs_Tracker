@@ -1,5 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~@angular/material/theming";
+/* For use in src/lib/core/theming/_palette.scss */
+$my-orange: (
+    50 : #fff8e0,
+    100 : #ffecb3,
+    200 : #ffe080,
+    300 : #ffd44d,
+    400 : #ffca26,
+    500 : #ffc100,
+    600 : #ffbb00,
+    700 : #ffb300,
+    800 : #ffab00,
+    900 : #ff9e00,
+    A100 : #ffffff,
+    A200 : #fffaf2,
+    A400 : #ffe4bf,
+    A700 : #ffd9a6,
+    contrast: (
+        50 : #fff,
+        100 : #fff,
+        200 : #fff,
+        300 : #fff,
+        400 : #fff,
+        500 : #fff,
+        600 : #fff,
+        700 : #fff,
+        800 : #fff,
+        900 : #fff,
+        A100 : #fff,
+        A200 : #fff,
+        A400 : #fff,
+        A700 : #fff,
+    )
+);
+
+
+@include mat-core();
+
+$mytheme-primary: mat-palette($my-orange);
+$mytheme-accent: mat-palette($mat-purple);
+$mytheme-warn: mat-palette($mat-red);
+
+$mytheme-theme: mat-light-theme(
+  (
+    color: (
+      primary: $mytheme-primary,
+      accent: $mytheme-accent,
+      warn: $mytheme-warn
+    )
+  )
+);
+
+@include angular-material-theme($mytheme-theme);
+
+
+
 html,
 body {
   height: 100%;
@@ -32,7 +88,7 @@ a {
 :root {
   --font-family: "Roboto", sans-serif;
   --primary: rgba(255, 193, 0, 1);
-  --secondary: #F7CC44;
+  --secondary: #f7cc44;
   --accent: #e5546d;
   --lightgray: #ddd;
   --text-regular: #444;

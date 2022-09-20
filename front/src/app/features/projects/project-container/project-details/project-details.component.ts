@@ -26,7 +26,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private projectService: ProjectService,
+    private projectService: ProjectService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +42,4 @@ export class ProjectDetailsComponent implements OnInit {
   getInfo(event: any) {
     this.ticket = event;
   }
-
-
 }

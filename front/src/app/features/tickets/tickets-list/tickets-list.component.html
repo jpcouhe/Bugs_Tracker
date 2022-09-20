@@ -1,13 +1,18 @@
-<mat-card>
+<mat-card >
   <mat-card-header>
     <mat-card-title>Liste des Tickets</mat-card-title>
     <input type="text" placeholder="Rechercher" (keyup)="filtrer($event)" />
-    <button class="mb-10 btn btn-primary" color="primary" (click)="openForm()">
+    <button
+      *ngIf="projectId"
+      class="mb-10 btn btn-primary"
+      color="primary"
+      (click)="openForm()"
+    >
       Nouveau Ticket
     </button>
   </mat-card-header>
   <mat-card-content>
-    <table mat-table matSort [dataSource]="dataSource" class="w-100">
+    <table   mat-table matSort [dataSource]="dataSource" class="w-100">
       <div>
         <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef>Titre</th>
@@ -38,10 +43,10 @@
             {{ ticket.status.name }}
           </td>
         </ng-container>
-        <ng-container matColumnDef="author">
-          <th mat-header-cell *matHeaderCellDef>Auteur</th>
-          <td mat-cell *matCellDef="let ticket">
-            {{ ticket.user.firstname }} {{ ticket.user.lastname }}
+        <ng-container matColumnDef="assigned">
+          <th mat-header-cell *matHeaderCellDef>Developpeur Assigné</th>
+          <td mat-cell *matCellDef="let ticket" >
+            {{ ticket.ticketsContribution[0].user.firstname }}
           </td>
         </ng-container>
         <ng-container matColumnDef="priority.name">
@@ -61,7 +66,7 @@
             Date de création
           </th>
           <td mat-cell *matCellDef="let ticket">
-            {{ ticket.createdAt | date:'dd/MM/YY' }}
+            {{ ticket.createdAt | date: "dd/MM/YY" }}
           </td>
         </ng-container>
         <ng-container matColumnDef="actions">

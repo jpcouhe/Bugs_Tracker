@@ -37,8 +37,9 @@
         class="flex-70"
         (displayTicket)="getInfo($event)"
         [projectId]="project!.id"
+        [project]="project"
       ></app-tickets-list>
     </div>
-    <app-tickets-information [ticket]="ticket"></app-tickets-information>
+    <app-tickets-information></app-tickets-information>
   </div>
 </div>

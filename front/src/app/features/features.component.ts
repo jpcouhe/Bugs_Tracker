@@ -15,7 +15,7 @@ import { UserService } from '../shared/services/user.service';
 export class FeaturesComponent implements OnInit {
   public isAdmin!: boolean;
   public subscription = new Subscription();
-
+  public userId!: number;
   public auth$: Observable<User | null> = this.authService.auth$.asObservable();
 
   public projects!: Project[];
@@ -28,24 +28,38 @@ export class FeaturesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.subscription.add(
-      this.auth$.subscribe((user) => {
-        if (user?.roleId === 1) {
-          this.isAdmin = true;
-        } else {
-          this.isAdmin = false;
-        }
-      })
-    );
+    // this.subscription.add(
+    //   this.auth$.subscribe((user) => {
+    //     if (user?.roleId === 1) {
+    //       this.isAdmin = true;
+    //     } else {
+    //       this.isAdmin = false;
+    //       this.userId = user?.id!;
+    //     }
+    //   })
+    // );
 
-    this.subscription.add(
-      this.projectService.getProjects().subscribe((projects) => {
-        this.projects = projects;
-      })
-    );
+    this.isAdmin = this.authService.getIsAdmin();
+    this.userId = parseInt(this.authService.getUserId());
+    if (this.isAdmin) {
+      this.subscription.add(
+        this.projectService.getProjects().subscribe((projects) => {
+          this.projects = projects;
+        })
+      );
+      this.subscription.add(this.ticketService.getAllTickets().subscribe());
+    } else {
+      this.subscription.add(
+        this.projectService.getProjects(this.userId).subscribe((projects) => {
+          this.projects = projects;
+        })
+      );
+      this.subscription.add(
+        this.ticketService.getAllTickets(this.userId).subscribe()
+      );
+    }
 
     this.subscription.add(this.userService.getAllUsers().subscribe());
-    this.subscription.add(this.ticketService.getAllTickets().subscribe());
   }
 
   ngOnDestroy(): void {

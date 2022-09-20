@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header class="mb-10 d-flex flex-row">
     <mat-card-title>Projets</mat-card-title>
-    <button class="mb-10 btn btn-primary" color="primary" (click)="openForm()">
+    <button *ngIf='isAdmin'class="mb-10 btn btn-primary" color="primary" (click)="openForm()">
       Nouveau projet
     </button>
   </mat-card-header>

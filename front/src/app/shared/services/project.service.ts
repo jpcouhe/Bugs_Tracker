@@ -14,10 +14,24 @@ export class ProjectService {
   constructor(private http: HttpClient) {}
 
   // J'instancie le BehaviourSubject
-  public getProjects() {
+  public getProjects(userId: number = 0) {
     return this.http.get<Project[]>('/api/project').pipe(
-      tap((projects) => {
-        this.project$.next(projects);
+      map((projects: Project[]) => {
+        if (userId === 0) {
+          this.project$.next(projects);
+          return projects;
+        } else {
+          const newArray: Project[] = [];
+          for (let i = 0; i < projects.length; i++) {
+            for (let j = 0; j < projects[i].contribution!.length; j++) {
+              if (projects[i].contribution![j].user.id == userId) {
+                newArray.push(projects[i]);
+              }
+            }
+          }
+          this.project$.next(newArray);
+          return newArray;
+        }
       })
     );
   }

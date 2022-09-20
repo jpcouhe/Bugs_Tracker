@@ -17,6 +17,49 @@ export class ChartsComponent implements OnInit, OnDestroy {
   public sumPriority!: any;
   public status!: {}[];
   public type!: {}[];
+  view: any = [400, 400];
+  colorScheme: any = [
+    {
+      name: 'Low',
+      value: '#F9E0E0',
+    },
+    {
+      name: 'Medium',
+      value: '#F0B3B3',
+    },
+    {
+      name: 'Intermediate',
+      value: '#E6808',
+    },
+    {
+      name: 'Hight',
+      value: '#C70000',
+    },
+    {
+      name: 'Issus',
+      value: '#E2EEF8',
+    },
+    {
+      name: 'Bug',
+      value: '#CFE2F4',
+    },
+    {
+      name: 'Feature Request',
+      value: '#72A3D8 ',
+    },
+    {
+      name: 'New',
+      value: '#FFF8E0',
+    },
+    {
+      name: 'In Progress',
+      value: '#FFECB3',
+    },
+    {
+      name: 'Resolve',
+      value: '#FFAB00',
+    },
+  ];
 
   constructor(private ticketService: TicketService) {}
 
@@ -31,6 +74,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
 
         return newObj;
       });
+
       this.status = this.ticketList.map((value: any) => {
         const newObj = {
           name: value.status.name,
@@ -48,6 +92,7 @@ export class ChartsComponent implements OnInit, OnDestroy {
       this.priority = this.tagazok(this.priority);
       this.status = this.tagazok(this.status);
       this.type = this.tagazok(this.type);
+     
     });
   }
   ngOnDestroy(): void {

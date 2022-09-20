@@ -30,9 +30,19 @@
 
     <mat-form-field>
       <mat-select
-        placeholder="Priorité"
-        formControlName="priorityId"
+        placeholder="Developpeur assigné"
+        formControlName="contributor"
       >
+        <mat-option
+          value=" {{ contributor.user.id }}"
+          *ngFor="let contributor of data.project.contribution"
+        >
+          {{ contributor.user.firstname }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Priorité" formControlName="priorityId">
         <mat-option value="1">Low </mat-option>
         <mat-option value="2">Medium </mat-option>
         <mat-option value="4">Intermediate</mat-option>

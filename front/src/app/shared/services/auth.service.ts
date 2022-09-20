@@ -15,6 +15,7 @@ export class AuthService {
 
   private access_token = '';
   private userId = '';
+  private isAdmin!: boolean;
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +32,12 @@ export class AuthService {
       }>('/api/auth/login', credential)
       .pipe(
         tap(({ userId, access_token, user }) => {
+        
+          if (user.roleId === 1) {
+            this.isAdmin = true;
+          } else {
+            this.isAdmin = false;
+          }
           this.userId = userId;
           this.access_token = access_token;
           this.isLoggedin$.next(true);
@@ -55,7 +62,9 @@ export class AuthService {
   public getToken() {
     return this.access_token;
   }
-
+  public getIsAdmin() {
+    return this.isAdmin;
+  }
   public getUserId() {
     return this.userId;
   }

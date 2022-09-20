@@ -22,7 +22,7 @@ import { ProjectFormComponent } from '../project-form/project-form.component';
 export class ProjectListComponent implements OnInit {
   @Input() public projects!: Project[] | null;
   @Input() public users!: User[] | null;
-
+  @Input() public isAdmin!: boolean;
   @Output() private deleteProject: EventEmitter<any> = new EventEmitter();
   @Output() private updateProject: EventEmitter<any> = new EventEmitter();
   @ViewChild(MatPaginator) public paginator!: MatPaginator;

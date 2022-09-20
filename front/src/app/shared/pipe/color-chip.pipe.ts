@@ -43,6 +43,6 @@ export class ColorChipPipe implements PipeTransform {
         break;
     }
 
-    return 'chip ' + color;
+    return color;
   }
 }

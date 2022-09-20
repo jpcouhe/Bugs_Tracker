@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { Ticket } from '../interfaces/ticket.inferface';
 
 @Injectable({
@@ -12,10 +12,26 @@ export class TicketService {
   >([]);
   constructor(private http: HttpClient) {}
 
-  public getAllTickets() {
+  public getAllTickets(userId: number = 0) {
     return this.http.get<Ticket[]>('/api/ticket').pipe(
-      tap((tickets: Ticket[]) => {
-        this.ticket$.next(tickets);
+      map((ticket: Ticket[]) => {
+        if (userId === 0) {
+          this.ticket$.next(ticket);
+        
+          return ticket;
+        } else {
+     
+          const newList: Ticket[] = [];
+          for (let i = 0; i < ticket.length; i++) {
+            for (let j = 0; j < ticket[i].ticketsContribution!.length; j++) {
+              if (ticket[i].ticketsContribution![j].user.id == userId) {
+                newList.push(ticket[i]);
+              }
+            }
+          }
+          this.ticket$.next(newList);
+          return newList;
+        }
       })
     );
   }
@@ -49,7 +65,7 @@ export class TicketService {
     return this.http.put<Ticket>('api/ticket/' + id, ticket).pipe(
       tap((updateTicket: Ticket) => {
         const allTicket = this.ticket$.value;
-        console.log(allTicket);
+
         const newTicket = allTicket.filter(
           (ticket) => ticket.id != updateTicket.id
         );
@@ -60,19 +76,15 @@ export class TicketService {
   }
 
   public postComment(id: number, comment: any) {
-    return this.http.post(`api/ticket/comment/${id}`, comment).pipe(
-      tap((comment: any) => {
-        console.log(comment);
-      })
-    );
+    return this.http
+      .post(`api/ticket/comment/${id}`, comment)
+      .pipe(tap((comment: any) => {}));
   }
 
   public getCommentByTicket(index: number): Observable<any> {
-    return this.http.get<Comment[]>(`/api/ticket/comment/${index}`).pipe(
-      tap((comment: Comment[]) => {
-        console.log(comment);
-      })
-    );
+    return this.http
+      .get<Comment[]>(`/api/ticket/comment/${index}`)
+      .pipe(tap((comment: Comment[]) => {}));
   }
 
   public removeComment(commentId: any): Observable<any> {

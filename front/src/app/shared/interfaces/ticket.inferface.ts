@@ -13,6 +13,9 @@ export interface Ticket {
     status: InformationTickets
     priority: InformationTickets
     type:InformationTickets
+    ticketsContribution: any[
+
+    ]
     comments: Comment[]
   }
   

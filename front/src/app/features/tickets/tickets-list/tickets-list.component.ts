@@ -22,12 +22,11 @@ import { TicketFormComponent } from '../ticket-form/ticket-form.component';
 export class TicketsListComponent implements OnInit {
   @Input() public tickets?: Ticket[] | null;
   @Input() public projectId?: number;
-
+  @Input() public project!: any;
   @Output() private displayTicket: EventEmitter<any> = new EventEmitter();
   @ViewChild(MatSort, { static: false }) public sort!: MatSort;
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
 
-  
   public dataSource: MatTableDataSource<Ticket | null> =
     new MatTableDataSource();
 
@@ -37,7 +36,7 @@ export class TicketsListComponent implements OnInit {
     'status.name',
     'priority.name',
     'type.name',
-    'author',
+    'assigned',
     'createdAt',
     'actions',
   ];
@@ -67,12 +66,24 @@ export class TicketsListComponent implements OnInit {
             }
           };
           this.dataSource.sort = this.sort;
-        });
-    } else {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.data = this.tickets!;
-      this.dataSource.sort = this.sort;
-    }
+        });}
+    // } else {
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.data = this.tickets!;
+    //   this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+    //     switch (property) {
+    //       case 'priority.name':
+    //         return item.priority.name;
+    //       case 'type.name':
+    //         return item.priority.name;
+    //       case 'status.name':
+    //         return item.priority.name;
+    //       default:
+    //         return item[property];
+    //     }
+    //   };
+    //   this.dataSource.sort = this.sort;
+    // }
 
     // Permet de faire des recherche sur les objets Nested
     this.dataSource.filterPredicate = (data: any, filter) => {
@@ -89,7 +100,9 @@ export class TicketsListComponent implements OnInit {
   openForm() {
     const ref = this.dialog.open(TicketFormComponent, {
       width: '600px',
-      data: this.projectId,
+      data: {
+        project: this.project,
+      },
     });
 
     ref.afterClosed().subscribe((data: any) => {
@@ -117,7 +130,10 @@ export class TicketsListComponent implements OnInit {
   modifyTicket(row: any) {
     const ref = this.dialog.open(TicketFormComponent, {
       width: '600px',
-      data: row,
+      data: {
+        ticket: row,
+        project: this.project,
+      },
     });
 
     ref.afterClosed().subscribe((data: any) => {
@@ -126,7 +142,6 @@ export class TicketsListComponent implements OnInit {
         const filter = newData.filter((value: any) => {
           return value.id !== data.id;
         });
-
         this.dataSource.data = [...filter, data];
       }
     });

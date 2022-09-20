@@ -4,6 +4,7 @@
   </div>
   <div class="bottom">
     <app-project-list
+      [isAdmin]="isAdmin"
       [projects]="projects | async"
       [users]="users | async"
       (deleteProject)="deleteProject($event)"

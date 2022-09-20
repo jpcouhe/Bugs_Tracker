@@ -18,15 +18,13 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./ticket-form.component.scss'],
 })
 export class TicketFormComponent implements OnInit {
-  @Input() public projectId!: number;
-
   public ticketForm!: FormGroup;
   public error!: string;
   public ticket!: any;
   public userId!: number;
   public number!: any;
   public modifyForm: boolean = false;
-
+  public contributor!: boolean;
   public selectedPriority!: any;
 
   constructor(
@@ -34,18 +32,20 @@ export class TicketFormComponent implements OnInit {
     private dialogRef: MatDialogRef<TicketFormComponent>,
     private authService: AuthService,
     private ticketService: TicketService,
-    @Inject(MAT_DIALOG_DATA) public data: []
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      ticket?: any;
+      project: any;
+    }
   ) {}
 
   ngOnInit(): void {
     this.userId = +this.authService.getUserId();
-    this.ticket = this.data;
-
-    if (typeof this.data === 'number') {
+    if (this.data.ticket == undefined) {
       this.ticketForm = this.initForm();
     } else {
+      this.ticket = this.data.ticket;
       this.modifyForm = true;
-
       this.selectedPriority = +this.ticket.priority.id;
       this.ticketForm = this.initForm(this.ticket);
     }
@@ -54,8 +54,8 @@ export class TicketFormComponent implements OnInit {
   public closeDialog() {}
 
   public submit() {
-    if (typeof this.data === 'number') {
-      this.ticketForm.patchValue({ projectId: this.data });
+    if (this.data.ticket == undefined) {
+      this.ticketForm.patchValue({ projectId: this.data.project.id });
       this.ticketService
         .createTicket(this.ticketForm.getRawValue())
         .subscribe((data) => {
@@ -65,6 +65,7 @@ export class TicketFormComponent implements OnInit {
       this.ticketService
         .updateTicket(this.ticket.id, this.ticketForm.getRawValue())
         .subscribe((data) => {
+          
           this.dialogRef.close(data);
         });
     }
@@ -76,18 +77,12 @@ export class TicketFormComponent implements OnInit {
       description: '',
       estimateTime: '',
       userId: '',
-      project: {
-        id: '',
-      },
-      status: {
-        id: 1,
-      },
-      priority: {
-        id: '',
-      },
-      type: {
-        id: '',
-      },
+      projectId: '',
+      ticketsContribution: [{ user: { id: '' } }],
+      statusId: 1,
+      priorityId: '',
+      typeId: '',
+      ticketId: '',
     }
   ): FormGroup {
     return this.fb.group({
@@ -95,10 +90,11 @@ export class TicketFormComponent implements OnInit {
       description: [ticket.description, Validators.required],
       estimateTime: [ticket.estimateTime, Validators.required],
       userId: [this.userId],
-      projectId: [ticket.project.id],
-      statusId: [ticket.status.id.toString(), Validators.required],
-      priorityId: [ticket.priority.id.toString(), Validators.required],
-      typeId: [ticket.type.id.toString(), Validators.required],
+      projectId: [ticket.projectId],
+      contributor: [ticket.ticketsContribution[0].user.id],
+      statusId: [ticket.statusId.toString(), Validators.required],
+      priorityId: [ticket.priorityId.toString(), Validators.required],
+      typeId: [ticket.typeId.toString(), Validators.required],
       ticketId: [ticket.id],
     });
   }
