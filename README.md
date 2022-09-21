@@ -53,14 +53,8 @@ This project was generated with
 #### 🚧 In dev mode :
         
 - `npm install`
-- `npm start`
-you will access to more packages (...)
+- `npm run dev`
 
-#### 🚀 In product mode :
-        
-- `npm install --only=prod`
-- `npm run start:prod #`
-With nodemon the app will automatically reload if you change any of the source file.
 
 After npm is done installing, set any environment variables in a .env file (in the folder Backend) , with this key :
 
