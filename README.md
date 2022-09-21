@@ -23,6 +23,8 @@ Le développeur, en se connectant, n'a accés qu'à des propres tickets pour mie
 * Frontend 
     - Framework **Angular**
     - **SCSS**
+    - ngx-charts
+    - Angular Material UI
 
 * Backend
     - Serveur **Node.JS** and Framework **Express**
