@@ -1,58 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
 
-@import "~@angular/material/theming";
+@include mat.core();
 /* For use in src/lib/core/theming/_palette.scss */
 $my-orange: (
-    50 : #fff8e0,
-    100 : #ffecb3,
-    200 : #ffe080,
-    300 : #ffd44d,
-    400 : #ffca26,
-    500 : #ffc100,
-    600 : #ffbb00,
-    700 : #ffb300,
-    800 : #ffab00,
-    900 : #ff9e00,
-    A100 : #ffffff,
-    A200 : #fffaf2,
-    A400 : #ffe4bf,
-    A700 : #ffd9a6,
-    contrast: (
-        50 : #fff,
-        100 : #fff,
-        200 : #fff,
-        300 : #fff,
-        400 : #fff,
-        500 : #fff,
-        600 : #fff,
-        700 : #fff,
-        800 : #fff,
-        900 : #fff,
-        A100 : #fff,
-        A200 : #fff,
-        A400 : #fff,
-        A700 : #fff,
-    )
+  50: #fff8e0,
+  100: #ffecb3,
+  200: #ffe080,
+  300: #ffd44d,
+  400: #ffca26,
+  500: #ffc100,
+  600: #ffbb00,
+  700: #ffb300,
+  800: #ffab00,
+  900: #ff9e00,
+  A100: #ffffff,
+  A200: #fffaf2,
+  A400: #ffe4bf,
+  A700: #ffd9a6,
+  contrast: (
+    50: #fff,
+    100: #fff,
+    200: #fff,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+    A100: #fff,
+    A200: #fff,
+    A400: #fff,
+    A700: #fff,
+  ),
 );
 
+$my-primary: mat.define-palette($my-orange);
+$my-accent: mat.define-palette(mat.$pink-palette);
+$my-warn: mat.define-palette(mat.$indigo-palette);
 
-@include mat-core();
-
-$mytheme-primary: mat-palette($my-orange);
-$mytheme-accent: mat-palette($mat-purple);
-$mytheme-warn: mat-palette($mat-red);
-
-$mytheme-theme: mat-light-theme(
+$my-theme: mat.define-light-theme(
   (
     color: (
-      primary: $mytheme-primary,
-      accent: $mytheme-accent,
-      warn: $mytheme-warn
-    )
-  )
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-accent,
+    ),
+  ),
 );
 
-@include angular-material-theme($mytheme-theme);
+@include mat.all-component-themes($my-theme);
 
 
 
@@ -115,10 +113,6 @@ hr {
   border-top: 1px solid #ddd;
 }
 // layout
-
-// .d-flex {
-//   display: flex;
-// }
 
 .flex-row {
   flex-direction: row;
