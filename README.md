@@ -2,15 +2,20 @@
 ﻿
 [![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url]
 
-# Name of the Project
-Rapid description | Keywords
+# BeeTracker
+
+Application Web de gestion de projet et suivi des bugs signalés
 
 ## Features
 
 <img src="assets/BeeTracker.png" alt="drawing" width='100%'/>
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Here is where you describe the project 
+Le modérateur peut créer des projets, assignés différents tickets aux développeurs qui travaillent sur le Projet. 
+Les tickets peuvent être triés selont différentes priorité, type ou status. 
+Module de commentaire pour chaque Ticket afin de faciliter les échanges
+
+Le développeur, en se connectant, n'a accés qu'à des propres tickets pour mieux s'organiser
 
 
 ## 🔨 Technologies 
@@ -21,8 +26,9 @@ Here is where you describe the project
 
 * Backend
     - Serveur **Node.JS** and Framework **Express**
-    - Packages: Multer, JsonWebTokens, uuid, helmet, nodemon, dotenv, keyv & bcryp
+    - Packages: JsonWebTokens, nodemon, dotenv
     - Database **MYSQL**
+    - Utilisation d'un ORM : Prisma 
 
 
 ## 🏗️ Installation
@@ -59,7 +65,8 @@ With nodemon the app will automatically reload if you change any of the source f
 After npm is done installing, set any environment variables in a .env file (in the folder Backend) , with this key :
 
 ```
-environment variable
+SERVER_PORT=9000
+DATABASE_URL="mysql://login:password@localhost:port/nom-de-la-database"
 ```
 
 ## 🏗️ Usage
