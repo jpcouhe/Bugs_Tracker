@@ -7,7 +7,7 @@ Rapid description | Keywords
 
 ## Features
 
-<img src="example.jpg" alt="drawing" height="250" width='100%'/>
+<img src="asset/example.jpg" alt="drawing" height="250" width='100%'/>
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 Here is where you describe the project 
