@@ -7,7 +7,7 @@ Rapid description | Keywords
 
 ## Features
 
-<img src="example.jpg" alt="drawing" height="250" width='100%'/>
+<img src="assets/BeeTracker.png" alt="drawing" width='100%'/>
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 Here is where you describe the project 
@@ -69,7 +69,7 @@ environment variable
 COUHE Jean-philippe - [@linkedin](www.linkedin.com/in/jean-philippe-couhe) - pro@jean-philippecouhe.fr
 
 
-<a href='www.google.com'><img src='youtube.png' height="50" width='auto'></br>
+<a href='www.google.com'><img src='assets/youtube.png' height="50" width='auto'></br>
 Project Link: [https://github.com/github_username/github_repo](https://github.com/github_username/github_repo)
 
 ## 😊 Acknowledgements
