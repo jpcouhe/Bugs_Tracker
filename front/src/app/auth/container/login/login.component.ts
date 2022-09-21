@@ -29,17 +29,13 @@ export class LoginComponent implements OnInit {
       this.authService
         .login(this.form.getRawValue())
         .pipe(
-          catchError((error: any) => {
+          catchError((error: ErrorEvent) => {
           
-            
             this.error = error.error;
             return EMPTY;
           })
         )
         .subscribe(() => this.router.navigateByUrl('/dashboard/resume'));
-      // (err: Error) => {
-      //   this.error = err?.message;
-      // };
     }
   }
 

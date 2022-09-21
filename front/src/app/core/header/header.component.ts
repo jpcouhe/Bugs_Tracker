@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() public isAdmin!: any;
+  @Input() public isAdmin!: boolean;
 
   constructor(private authService: AuthService, private route:Router) {}
 

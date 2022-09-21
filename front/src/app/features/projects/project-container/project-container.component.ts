@@ -15,7 +15,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class ProjectContainerComponent implements OnInit {
   public projects?: Observable<Project[] | null>;
   public users?: Observable<User[] | null>;
-  public isAdmin!: boolean
+  public isAdmin!: boolean;
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
@@ -23,17 +23,16 @@ export class ProjectContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isAdmin = this.authService.getIsAdmin()
+    this.isAdmin = this.authService.getIsAdmin();
     this.projects = this.projectService.project$;
     this.users = this.userService.user$;
   }
 
-  public deleteProject(Event: any) {
-    this.projectService.deleteProject(Event).subscribe();
+  public deleteProject($Event: number) {
+    this.projectService.deleteProject($Event).subscribe();
   }
 
-  public updateProject(project: any) {
-
-    this.projectService.updateProject(project.id, project).subscribe();
+  public updateProject($Event: Project) {
+    this.projectService.updateProject($Event.id, $Event).subscribe();
   }
 }

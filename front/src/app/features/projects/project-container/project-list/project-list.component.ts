@@ -62,7 +62,7 @@ export class ProjectListComponent implements OnInit {
       width: '600px',
       data: project,
     });
-    // this.updateProject.emit(project);
+    this.updateProject.emit(project);
   }
 
   onDelete(index: number) {

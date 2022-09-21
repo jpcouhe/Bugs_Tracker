@@ -5,8 +5,7 @@ import { ProjectService } from 'src/app/shared/services/project.service';
 import { Subscription, tap } from 'rxjs';
 import { Ticket } from 'src/app/shared/interfaces/ticket.inferface';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
-import { ProjectFormComponent } from '../project-form/project-form.component';
+
 
 @Component({
   selector: 'app-project-details',
@@ -19,7 +18,7 @@ export class ProjectDetailsComponent implements OnInit {
   public subscription?: Subscription;
   public index!: number;
 
-  public dataSource: MatTableDataSource<Ticket | null> =
+  public dataSource: MatTableDataSource<Project['contribution'] | undefined> =
     new MatTableDataSource();
 
   public displayedColumns: string[] = ['nom', 'phone', 'email'];
@@ -34,13 +33,19 @@ export class ProjectDetailsComponent implements OnInit {
       this.index = +paramMap.get('index')!;
     });
 
-    this.projectService.getOneProject(this.index).subscribe((project: any) => {
-      this.project = project[0];
-      this.dataSource = project[0].contribution;
-    });
+    this.projectService
+      .getOneProject(this.index)
+      .subscribe((project: Project[]) => {
+        if (project) {
+          console.log(project);
+          console.log(project[0].contribution);
+          this.project = project[0];
+          this.dataSource = project[0]?.contribution as any
+        }
+      });
   }
   getInfo(event: any) {
-    console.log(event)
+    console.log(event);
     this.ticket = event;
   }
 }
