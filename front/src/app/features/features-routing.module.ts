@@ -5,11 +5,10 @@ import { AuthGuard } from 'src/app/shared/guard/auth.guard';
 import { DataUserGuard } from 'src/app/shared/guard/data-user.guard';
 import { ProjectContainerComponent } from './projects/project-container/project-container.component';
 import { TicketsComponent } from './tickets/tickets.component';
-import { ProjectListComponent } from './projects/project-container/project-list/project-list.component';
 import { FeaturesComponent } from './features.component';
 import { ProjectDetailsComponent } from './projects/project-container/project-details/project-details.component';
-import { ProjectFormComponent } from './projects/project-container/project-form/project-form.component';
 import { AdminFormComponent } from '../admin/admin-form/admin-form.component';
+import { PROJECT_DETAIL_ID_PARAM } from '../shared/utils/type.params';
 
 const routes: Routes = [
   {
@@ -22,7 +21,7 @@ const routes: Routes = [
         component: ProjectContainerComponent,
       },
       {
-        path: 'resume/:index',
+        path: 'resume/:' + PROJECT_DETAIL_ID_PARAM,
         component: ProjectDetailsComponent,
       },
       { path: 'tickets', component: TicketsComponent },

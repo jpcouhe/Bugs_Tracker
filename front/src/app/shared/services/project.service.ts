@@ -23,9 +23,11 @@ export class ProjectService {
         } else {
           const newArray: Project[] = [];
           for (let i = 0; i < projects.length; i++) {
-            for (let j = 0; j < projects[i].contribution!.length; j++) {
-              if (projects[i].contribution![j].user.id == userId) {
-                newArray.push(projects[i]);
+            if (projects[i].contribution !== undefined) {
+              for (let j = 0; j < projects[i].contribution!.length; j++) {
+                if (projects[i].contribution![j].user.id == userId) {
+                  newArray.push(projects[i]);
+                }
               }
             }
           }
@@ -45,7 +47,7 @@ export class ProjectService {
       }),
       map((projects: Project[]) => {
         const result = projects.filter(
-          (project: Project) => project.id == index
+          (project: Project) => project.id === index
         );
 
         return result;
@@ -55,7 +57,7 @@ export class ProjectService {
 
   public createProject(project: Project): Observable<Project> {
     return this.http.post<Project>('api/project', project).pipe(
-      tap((project: any) => {
+      tap((project: Project) => {
         const allProject = this.project$.value;
         this.project$.next([...allProject, project]);
       })
@@ -63,8 +65,8 @@ export class ProjectService {
   }
 
   public deleteProject(index: number) {
-    return this.http.delete('api/project/' + index).pipe(
-      tap((deleteProject: any) => {
+    return this.http.delete<Project>('api/project/' + index).pipe(
+      tap((deleteProject: Project) => {
         const allProject = this.project$.value;
         const newProjet = allProject.filter(
           (projet) => projet.id !== deleteProject.id
@@ -76,7 +78,7 @@ export class ProjectService {
 
   public updateProject(id: number | undefined, project: Project) {
     return this.http.put<Project>('api/project/' + id, project).pipe(
-      tap((updateProject: any) => {
+      tap((updateProject: Project) => {
         const allProject = this.project$.value;
         const newProjet = allProject.filter(
           (projet) => projet.id !== updateProject.id

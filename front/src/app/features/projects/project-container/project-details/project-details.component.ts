@@ -5,6 +5,7 @@ import { ProjectService } from 'src/app/shared/services/project.service';
 import { Subscription } from 'rxjs';
 import { Ticket } from 'src/app/shared/interfaces/ticket.inferface';
 import { MatTableDataSource } from '@angular/material/table';
+import { PROJECT_DETAIL_ID_PARAM } from 'src/app/shared/utils/type.params';
 
 @Component({
   selector: 'app-project-details',
@@ -15,7 +16,7 @@ export class ProjectDetailsComponent implements OnInit {
   public project?: Project;
   public ticket?: Ticket;
   public subscription?: Subscription;
-  public index!: number;
+  public index!: number | null;
 
   public dataSource: MatTableDataSource<Project['contribution'] | undefined> =
     new MatTableDataSource();
@@ -29,8 +30,8 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.get() !== null) {
-        this.index = +paramMap.get('index')!;
+      if (paramMap.get(PROJECT_DETAIL_ID_PARAM) !== null) {
+        this.index = Number(paramMap.get(PROJECT_DETAIL_ID_PARAM));
       }
     });
 
