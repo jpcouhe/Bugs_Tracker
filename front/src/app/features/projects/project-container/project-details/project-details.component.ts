@@ -16,7 +16,7 @@ export class ProjectDetailsComponent implements OnInit {
   public project?: Project;
   public ticket?: Ticket;
   public subscription?: Subscription;
-  public index!: number | null;
+  public index!: number;
 
   public dataSource: MatTableDataSource<Project['contribution'] | undefined> =
     new MatTableDataSource();
