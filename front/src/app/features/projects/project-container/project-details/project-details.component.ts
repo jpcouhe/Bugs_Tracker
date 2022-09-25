@@ -29,7 +29,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap !== null) {
+      if (paramMap.get() !== null) {
         this.index = +paramMap.get('index')!;
       }
     });
