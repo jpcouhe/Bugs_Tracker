@@ -4,7 +4,7 @@ import { Ticket } from 'src/app/shared/interfaces/ticket.inferface';
 import { User } from 'src/app/shared/interfaces/user.interface';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { TicketService } from 'src/app/shared/services/ticket.service';
-import { UserService } from 'src/app/shared/services/user.service';
+
 
 @Component({
   selector: 'app-tickets',

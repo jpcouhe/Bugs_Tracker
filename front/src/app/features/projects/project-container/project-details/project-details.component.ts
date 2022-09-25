@@ -2,10 +2,9 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Project } from 'src/app/shared/interfaces/project.inferface';
 import { ProjectService } from 'src/app/shared/services/project.service';
-import { Subscription, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Ticket } from 'src/app/shared/interfaces/ticket.inferface';
 import { MatTableDataSource } from '@angular/material/table';
-
 
 @Component({
   selector: 'app-project-details',
@@ -30,22 +29,21 @@ export class ProjectDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.index = +paramMap.get('index')!;
+      if (paramMap !== null) {
+        this.index = +paramMap.get('index')!;
+      }
     });
 
     this.projectService
       .getOneProject(this.index)
       .subscribe((project: Project[]) => {
         if (project) {
-          console.log(project);
-          console.log(project[0].contribution);
           this.project = project[0];
-          this.dataSource = project[0]?.contribution as any
+          this.dataSource = project[0]?.contribution as any;
         }
       });
   }
   getInfo(event: any) {
-    console.log(event);
     this.ticket = event;
   }
 }

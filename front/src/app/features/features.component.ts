@@ -28,17 +28,6 @@ export class FeaturesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.subscription.add(
-    //   this.auth$.subscribe((user) => {
-    //     if (user?.roleId === 1) {
-    //       this.isAdmin = true;
-    //     } else {
-    //       this.isAdmin = false;
-    //       this.userId = user?.id!;
-    //     }
-    //   })
-    // );
-
     this.isAdmin = this.authService.getIsAdmin();
     this.userId = parseInt(this.authService.getUserId());
     if (this.isAdmin) {

@@ -1,16 +1,12 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {
-  MatDialog,
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Ticket } from 'src/app/shared/interfaces/ticket.inferface';
+
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { ProjectService } from 'src/app/shared/services/project.service';
 import { TicketService } from 'src/app/shared/services/ticket.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-ticket-form',
